@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>1-D gas dynamics functions</title>
+	<script type="text/javascript" src="script/script_gdf.js" defer></script>
+	<script type="text/javascript" src="script/script.js" defer></script>
+</head>
+
+<!--https://www.w3schools.com/howto/howto_js_tabs.asp-->
+<!--https://www.w3schools.com/howto/howto_css_sidebar_responsive.asp-->
+
+<body>
+	<div class="page">
+		<nav class="sidebar">
+			<a class="tab" name="gdf" id="tab_opened_by_default">GDF</a>
+			<a class="tab" name="settings">settings</a>
+			<a class="tab" name="about">about</a>
+		</nav> <!-- /sidebar -->
+		<div class="tab_content tab_settings" name="settings">
+			<header class="tab_header">Settings</header>
+			<div class="container">
+				<div class="input_block">
+					<label class="setting_label" for="mantissa_size">mantissa size</label>
+					<input class="setting_input" name="mantissa_size" type="number" min="2" max="11" value="5">
+				</div>
+
+				<div class="input_block">
+					<label class="setting_label" for="decimal_separator">decimal separator</label>
+					<select class="setting_input" name="decimal_separator">
+						<option value=".">"." point</option>
+						<option value=",">"," comma</option>
+					</select>
+				</div>
+				<div class="input_block">
+					<label class="setting_label" for="notation">output format</label>
+					<select class="setting_input" name="notation">
+						<option value="default">0.123 - default</option>
+						<option value="scientific">1.23e-01 - scientific</option>
+					</select>
+				</div>
+			</div> <!-- /container -->
+		</div> <!-- tab_settings -->
+		<div class="tab_content tab_gdf" name="gdf">
+			<header class="tab_header">
+				1-D gas dynamics functions
+			</header>
+			<div class="container">
+				<div class="function_block function_block_kappa">
+					<label class="gdf_label" for="kappa">&#954</label>
+					<input class="gdf_input gdf_input_kappa" type="text" inputmode="numeric" id="kappa" name="kappa" list="kappa_list" default="1.4" min="1.0" max="1.667" pattern="^\d?([\.,]?\d*)?$">
+					<datalist id="kappa_list">
+						<option value="1.4">
+						<option value="1.33">
+						<option value="1.25">
+					</datalist>
+				</div>
+				<div class="function_block">
+					<label class="gdf_label" for="mach">M</label>
+					<input class="gdf_input" type="text" inputmode="numeric" pattern="^\d*([\.,]?\d*)?(e[-+]?\d*)?$" id="mach" name="mach">
+				</div>
+				<div class="function_block">
+					<label class="gdf_label" for="lambda">&#955</label>
+					<input class="gdf_input" type="text" inputmode="numeric" pattern="^\d?([\.,]?\d*)?(e[-+]?\d*)?$" id="lambda" name="lambda">
+				</div>
+				<div class="function_block">
+					<label class="gdf_label" for="pi">&#960</label>
+					<input class="gdf_input" type="text" inputmode="numeric" pattern="^\d?([\.,]?\d*)?e?(-?\d*|\+?0?)?$" id="pi" name="pi">
+				</div>
+				<div class="function_block">
+					<label class="gdf_label" for="tau">&#964</label>
+					<input class="gdf_input" type="text" inputmode="numeric" pattern="^\d?([\.,]?\d*)?e?(-?\d*|\+?0?)?$" id="tau" name="tau">
+				</div>
+				<div class="function_block">
+					<label class="gdf_label" for="epsilon">&#949</label>
+					<input class="gdf_input" type="text" inputmode="numeric" pattern="^\d?([\.,]?\d*)?e?(-?\d*|\+?0?)?$" id="epsilon" name="epsilon">
+				</div>
+				<div class="function_block">
+					<label class="gdf_label" for="qu">q</label>
+					<input class="gdf_input" type="text" inputmode="numeric" pattern="^\d?([\.,]?\d*)?e?(-?\d*|\+?0?)?$" id="qu" name="qu">
+					<div class="mach_area">
+						<input type="radio" id="subsound" name="flow_speed" value="subsound">
+						<label for="subsound">M &#8804 1</label><br> <!-- &lt -->
+						<input type="radio" id="supersound" name="flow_speed" value="supersound">
+						<label for="supersound">M &#8805 1</label><br> <!-- &gt -->
+					</div>
+				</div>
+			</div> <!-- /container -->
+		</div> <!-- /tab_gdf-->
+		<div class="tab_content tab_about" name="about">
+			<header class="tab_header">About</header>
+			<div class="container">
+				<article class="about_article">
+					<div class="about_article_header">GDF legend</div>
+					<ul class="definitions_list">
+						<li><dfn>&#954</dfn> - ratio of specific heats</li>
+						<li><dfn>M</dfn> = V &#8725 a</li>
+						<li><dfn>&#955</dfn> = V &#8725 a<sup>*</sup></li>
+						<li><dfn>&#960</dfn> = P &#8725 P<sub>0</sub></li>
+						<li><dfn>&#964</dfn> = T &#8725 T<sub>0</sub></li>
+						<li><dfn>&#949</dfn> = &#961 &#8725 &#961<sub>0</sub></li> <!-- ro / ro0 -->
+						<li><dfn>q</dfn> = A<sup>*</sup> &#8725 A</li>
+						where
+						<ul>
+							<li><dfn>V</dfn> - velocity of the flow</li>
+							<li><dfn>a</dfn> - sound speed in the flow</li>
+							<li><dfn>P</dfn> - pressure</li>
+							<li><dfn>T</dfn> - temperature</li>
+							<li><dfn>&#961</dfn> - density</li>
+							<li><dfn>A</dfn> - cross-sectional area of the flow </li>
+							<li><dfn>x<sub>0</sub></dfn> - total parameter</li>
+							<li><dfn>x<sup>*</sup></dfn> - critical parameter</li>
+						</ul>
+					</ul>
+				</article>
+				<article class="about_article">
+					<div class="about_article_header">About isentropic compressible flow relations</div>
+					<ul class="definitions_list">
+						<li>
+							<a href="https://en.wikipedia.org/wiki/Compressible_flow#Isentropic_flow_Mach_number_relationships" target="_blank">Wikipedia - isentropic flow relations</a>
+						</li>
+						<li>
+							<a href="https://en.wikipedia.org/wiki/Isentropic_nozzle_flow#Supersonic_flow" target="_blank">Wikipedia - nozzle example</a>
+						</li>
+						<li>
+							<a href="https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html" target="_blank">NASA - nozzle example</a>
+						</li>
+					</ul>
+				</article>
+
+			</div> <!-- /container -->
+		</div> <!-- /tab_about-->
+	</div> <!-- /page -->
+</body>
+
+</html>
